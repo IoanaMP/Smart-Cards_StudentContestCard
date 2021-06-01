@@ -1,0 +1,1170 @@
+// converted by version  [v3.1.0]
+// on Tue May 25 07:53:55 EEST 2021
+
+.package com/oracle/jcclassic/samples/wallet {
+	.aid 0xA0:0x0:0x0:0x0:0x62:0x3:0x1:0xC:0x6;
+	.version 1.0;
+
+	.imports {
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x1 1.8;		//javacard/framework
+		0xA0:0x0:0x0:0x0:0x62:0x0:0x1 1.0;		//java/lang
+	}
+
+	.applet {
+		0xA0:0x0:0x0:0x0:0x62:0x3:0x1:0xC:0x6:0x1 Wallet;
+	}
+
+	.constantPool {
+		// 0
+		instanceFieldRef short Wallet/NOTA_D1;
+		// 1
+		instanceFieldRef short Wallet/NOTA_D2;
+		// 2
+		instanceFieldRef short Wallet/NOTA_D3;
+		// 3
+		instanceFieldRef short Wallet/NOTA_D4;
+		// 4
+		instanceFieldRef short Wallet/NOTA_D5;
+		// 5
+		instanceFieldRef short Wallet/PUNCT_C1;
+		// 6
+		instanceFieldRef short Wallet/PUNCT_C2;
+		// 7
+		instanceFieldRef short Wallet/PUNCT_C3;
+		// 8
+		instanceFieldRef short Wallet/PUNCT_C4;
+		// 9
+		instanceFieldRef short Wallet/PUNCT_C5;
+		// 10
+		instanceFieldRef 0.9 Wallet/pin;
+		// 11
+		.classRef 0.9;		// javacard/framework/OwnerPIN
+		// 12
+		staticMethodRef 0.9.0(BB)V;		// javacard/framework/OwnerPIN.<init>(BB)V
+		// 13
+		staticMethodRef 0.3.0()V;		// javacard/framework/Applet.<init>()V
+		// 14
+		virtualMethodRef 0.9.8([BSB)V;		// update([BSB)V
+		// 15
+		virtualMethodRef 0.3.1()V;		// register()V
+		// 16
+		.classRef Wallet;
+		// 17
+		staticMethodRef Wallet/<init>([BSB)V;
+		// 18
+		virtualMethodRef 0.9.2()B;		// getTriesRemaining()B
+		// 19
+		virtualMethodRef 0.9.5()V;		// reset()V
+		// 20
+		virtualMethodRef 0.10.1()[B;		// getBuffer()[B
+		// 21
+		virtualMethodRef 0.10.14()Z;		// isISOInterindustryCLA()Z
+		// 22
+		staticMethodRef 0.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+		// 23
+		staticMethodRef Wallet/getPunctaje(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 24
+		staticMethodRef Wallet/getCardInfo(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 25
+		staticMethodRef Wallet/concurs(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 26
+		staticMethodRef Wallet/nota(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 27
+		staticMethodRef Wallet/verify(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 28
+		staticMethodRef Wallet/reset_pin_try_counter(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 29
+		staticFieldRef byte[] Wallet/puk;
+		// 30
+		virtualMethodRef 0.10.6()S;		// setIncomingAndReceive()S
+		// 31
+		staticMethodRef Wallet/check_puk([BSB)Z;
+		// 32
+		virtualMethodRef 0.9.6()V;		// resetAndUnblock()V
+		// 33
+		virtualMethodRef 0.9.4()Z;		// isValidated()Z
+		// 34
+		virtualMethodRef 0.10.7()S;		// setOutgoing()S
+		// 35
+		virtualMethodRef 0.10.9(S)V;		// setOutgoingLength(S)V
+		// 36
+		virtualMethodRef 0.10.4(SS)V;		// sendBytes(SS)V
+		// 37
+		virtualMethodRef 0.9.1([BSB)Z;		// check([BSB)Z
+	}
+
+	.class public Wallet 0 extends 0.3 {		// extends javacard/framework/Applet
+
+		.fields {
+			public short PUNCT_C1 0;		// S
+			 0.9 pin 1;		// Ljavacard/framework/OwnerPIN;
+			 short NOTA_D1 2;		// S
+			 short NOTA_D2 3;		// S
+			 short NOTA_D3 4;		// S
+			 short NOTA_D4 5;		// S
+			 short NOTA_D5 6;		// S
+			 short PUNCT_C2 7;		// S
+			 short PUNCT_C3 8;		// S
+			 short PUNCT_C4 9;		// S
+			 short PUNCT_C5 10;		// S
+			static final byte Wallet_CLA = -128;		// B
+			static final byte VERIFY = 32;		// B
+			static final byte CONCURS = 48;		// B
+			static final byte NOTA = 64;		// B
+			static final byte PRIORITATE = 80;		// B
+			static final byte INFO = 96;		// B
+			static final short COD_D1 = 1;		// S
+			static final short COD_D2 = 2;		// S
+			static final short COD_D3 = 3;		// S
+			static final short COD_D4 = 4;		// S
+			static final short COD_D5 = 5;		// S
+			static final short zi1 = 5;		// S
+			static final short luna1 = 5;		// S
+			static final short an1 = 2021;		// S
+			static final short zi2 = 5;		// S
+			static final short luna2 = 5;		// S
+			static final short an2 = 2021;		// S
+			static final short zi3 = 5;		// S
+			static final short luna3 = 5;		// S
+			static final short an3 = 2021;		// S
+			static final short zi4 = 5;		// S
+			static final short luna4 = 5;		// S
+			static final short an4 = 2021;		// S
+			static final short zi5 = 5;		// S
+			static final short luna5 = 5;		// S
+			static final short an5 = 2021;		// S
+			static final short COD_C1 = 1;		// S
+			static final short COD_C2 = 2;		// S
+			static final short COD_C3 = 3;		// S
+			static final short COD_C4 = 4;		// S
+			static final short COD_C5 = 5;		// S
+			static final byte PIN_TRY_LIMIT = 3;		// B
+			static final byte MAX_PIN_SIZE = 8;		// B
+			static final short SW_PUNCT_UPDATE_FAILED = 6666;		// S
+			static final short SW_DISCIPLINA_NOT_FOUND = 4040;		// S
+			static final short SW_VERIFICATION_FAILED = 25344;		// S
+			static final short SW_PIN_VERIFICATION_REQUIRED = 25345;		// S
+			static final short SW_INVALID_TRANSACTION_AMOUNT = 27267;		// S
+			static final byte[] puk = {9,9,9,9,9,9,9,9,9};		// [B
+		}
+
+		.publicMethodTable 4 8 {
+			equals(Ljava/lang/Object;)Z 0;
+			register()V 1;
+			register([BSB)V 2;
+			selectingApplet()Z 3;
+			deselect()V 4;
+			getShareableInterfaceObject(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable; 5;
+			select()Z 6;
+			process(Ljavacard/framework/APDU;)V 7;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method private <init>([BSB)V {
+			.stack 5;
+			.locals 3;
+
+				L0:	aload_0;
+					invokespecial 13;		// javacard/framework/Applet.<init>()V
+					bspush 7;
+					putfield_s_this 0;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D1
+					bspush 9;
+					putfield_s_this 1;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D2
+					bspush 7;
+					putfield_s_this 2;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D3
+					bspush 9;
+					putfield_s_this 3;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D4
+					bspush 7;
+					putfield_s_this 4;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D5
+					sconst_0;
+					putfield_s_this 5;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C1
+					sconst_0;
+					putfield_s_this 6;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C2
+					sconst_0;
+					putfield_s_this 7;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C3
+					bspush 85;
+					putfield_s_this 8;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C4
+					bspush 80;
+					putfield_s_this 9;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C5
+					aload_0;
+					new 11;		// javacard/framework/OwnerPIN
+					dup;
+					sconst_3;
+					bspush 8;
+					invokespecial 12;		// javacard/framework/OwnerPIN.<init>(BB)V
+					putfield_a 10;		// reference com/oracle/jcclassic/samples/wallet/Wallet.pin
+					aload_1;
+					sload_2;
+					baload;
+					sstore 4;
+				L1:	sload_2;
+					sload 4;
+					sadd;
+					sconst_1;
+					sadd;
+					sstore_2;
+					aload_1;
+					sload_2;
+					baload;
+					sstore 5;
+				L2:	sload_2;
+					sload 5;
+					sadd;
+					sconst_1;
+					sadd;
+					sstore_2;
+					aload_1;
+					sload_2;
+					baload;
+					sstore 6;
+				L3:	getfield_a_this 10;		// reference com/oracle/jcclassic/samples/wallet/Wallet.pin
+					aload_1;
+					sload_2;
+					sconst_1;
+					sadd;
+					sload 6;
+					invokevirtual 14;		// update([BSB)V
+					aload_0;
+					invokevirtual 15;		// register()V
+					return;
+		}
+
+		.method public static install([BSB)V 0 {
+			.stack 4;
+			.locals 0;
+
+				L0:	new 16;		// com/oracle/jcclassic/samples/wallet/Wallet
+					aload_0;
+					sload_1;
+					sload_2;
+					invokespecial 17;		// com/oracle/jcclassic/samples/wallet/Wallet.<init>([BSB)V
+					return;
+		}
+
+		.method public select()Z 6 {
+			.stack 1;
+			.locals 0;
+
+				L0:	getfield_a_this 10;		// reference com/oracle/jcclassic/samples/wallet/Wallet.pin
+					invokevirtual 18;		// getTriesRemaining()B
+					ifne L2;
+				L1:	sconst_0;
+					sreturn;
+				L2:	sconst_1;
+					sreturn;
+		}
+
+		.method public deselect()V 4 {
+			.stack 1;
+			.locals 0;
+
+				L0:	getfield_a_this 10;		// reference com/oracle/jcclassic/samples/wallet/Wallet.pin
+					invokevirtual 19;		// reset()V
+					return;
+		}
+
+		.method public process(Ljavacard/framework/APDU;)V 7 {
+			.stack 2;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 20;		// getBuffer()[B
+					astore_2;
+				L1:	aload_1;
+					invokevirtual 21;		// isISOInterindustryCLA()Z
+					ifeq L5;
+				L2:	aload_2;
+					sconst_1;
+					baload;
+					bspush -92;
+					if_scmpne L4;
+				L3:	return;
+				L4:	sspush 28160;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L5:	aload_2;
+					sconst_0;
+					baload;
+					bspush -128;
+					if_scmpeq L7;
+				L6:	sspush 28160;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L7:	aload_2;
+					sconst_1;
+					baload;
+					slookupswitch L14 6 32 L12 44 L13 48 L10 64 L11 80 L8 96 L9;
+				L8:	aload_0;
+					aload_1;
+					invokespecial 23;		// com/oracle/jcclassic/samples/wallet/Wallet.getPunctaje(Ljavacard/framework/APDU;)V
+					return;
+				L9:	aload_0;
+					aload_1;
+					invokespecial 24;		// com/oracle/jcclassic/samples/wallet/Wallet.getCardInfo(Ljavacard/framework/APDU;)V
+					return;
+				L10:	aload_0;
+					aload_1;
+					invokespecial 25;		// com/oracle/jcclassic/samples/wallet/Wallet.concurs(Ljavacard/framework/APDU;)V
+					return;
+				L11:	aload_0;
+					aload_1;
+					invokespecial 26;		// com/oracle/jcclassic/samples/wallet/Wallet.nota(Ljavacard/framework/APDU;)V
+					return;
+				L12:	aload_0;
+					aload_1;
+					invokespecial 27;		// com/oracle/jcclassic/samples/wallet/Wallet.verify(Ljavacard/framework/APDU;)V
+					return;
+				L13:	aload_0;
+					aload_1;
+					invokespecial 28;		// com/oracle/jcclassic/samples/wallet/Wallet.reset_pin_try_counter(Ljavacard/framework/APDU;)V
+					return;
+				L14:	sspush 27904;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+					return;
+		}
+
+		.method private check_puk([BSB)Z {
+			.stack 3;
+			.locals 2;
+
+				L0:	sconst_0;
+					sstore 5;
+				L1:	sconst_5;
+					sstore 4;
+				L2:	goto L6;
+				L3:	getstatic_a 29;		// reference com/oracle/jcclassic/samples/wallet/Wallet.puk
+					sload 5;
+					baload;
+					aload_1;
+					sload 4;
+					baload;
+					if_scmpeq L5;
+				L4:	sspush 25344;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+					sconst_0;
+					sreturn;
+				L5:	sinc 5 1;
+					sinc 4 1;
+				L6:	sload 4;
+					sconst_5;
+					sload_3;
+					sadd;
+					if_scmplt L3;
+				L7:	sconst_1;
+					sreturn;
+		}
+
+		.method private reset_pin_try_counter(Ljavacard/framework/APDU;)V {
+			.stack 4;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 20;		// getBuffer()[B
+					astore_2;
+				L1:	aload_1;
+					invokevirtual 30;		// setIncomingAndReceive()S
+					s2b;
+					sstore_3;
+				L2:	aload_0;
+					aload_2;
+					sconst_5;
+					sload_3;
+					invokespecial 31;		// com/oracle/jcclassic/samples/wallet/Wallet.check_puk([BSB)Z
+					ifeq L4;
+				L3:	getfield_a_this 10;		// reference com/oracle/jcclassic/samples/wallet/Wallet.pin
+					invokevirtual 32;		// resetAndUnblock()V
+				L4:	return;
+		}
+
+		.method private concurs(Ljavacard/framework/APDU;)V {
+			.stack 4;
+			.locals 5;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	getfield_a_this 10;		// reference com/oracle/jcclassic/samples/wallet/Wallet.pin
+					invokevirtual 33;		// isValidated()Z
+					ifne L2;
+				L1:	sspush 25345;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 20;		// getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_4;
+					baload;
+					sstore_3;
+				L4:	aload_1;
+					invokevirtual 30;		// setIncomingAndReceive()S
+					s2b;
+					sstore 4;
+				L5:	sload_3;
+					sconst_2;
+					if_scmpne L7;
+				L6:	sload 4;
+					sconst_2;
+					if_scmpeq L8;
+				L7:	sspush 26368;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L8:	sconst_2;
+					newarray 11;
+					astore 5;
+				L9:	aload 5;
+					sconst_0;
+					aload_2;
+					sconst_5;
+					baload;
+					bastore;
+					aload 5;
+					sconst_1;
+					aload_2;
+					bspush 6;
+					baload;
+					bastore;
+					aload 5;
+					sconst_0;
+					baload;
+					sconst_1;
+					if_scmpne L11;
+				L10:	aload_0;
+					aload 5;
+					sconst_1;
+					baload;
+					putfield_s 5;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C1
+					goto L20;
+				L11:	aload 5;
+					sconst_0;
+					baload;
+					sconst_2;
+					if_scmpne L13;
+				L12:	aload_0;
+					aload 5;
+					sconst_1;
+					baload;
+					putfield_s 6;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C2
+					goto L20;
+				L13:	aload 5;
+					sconst_0;
+					baload;
+					sconst_3;
+					if_scmpne L15;
+				L14:	aload_0;
+					aload 5;
+					sconst_1;
+					baload;
+					putfield_s 7;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C3
+					goto L20;
+				L15:	aload 5;
+					sconst_0;
+					baload;
+					sconst_4;
+					if_scmpne L17;
+				L16:	aload_0;
+					aload 5;
+					sconst_1;
+					baload;
+					putfield_s 8;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C4
+					goto L20;
+				L17:	aload 5;
+					sconst_0;
+					baload;
+					sconst_5;
+					if_scmpne L19;
+				L18:	aload_0;
+					aload 5;
+					sconst_1;
+					baload;
+					putfield_s 9;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C5
+					goto L20;
+				L19:	sspush 6666;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L20:	aload_1;
+					invokevirtual 34;		// setOutgoing()S
+					sstore 6;
+				L21:	sload 6;
+					sconst_2;
+					if_scmpge L23;
+				L22:	sspush 26368;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L23:	aload_1;
+					sconst_2;
+					invokevirtual 35;		// setOutgoingLength(S)V
+					aload_2;
+					sconst_0;
+					getfield_s_this 5;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C1
+					bspush 8;
+					sshr;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_1;
+					getfield_s_this 5;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C1
+					sspush 255;
+					sand;
+					s2b;
+					bastore;
+					aload_1;
+					sconst_0;
+					sconst_2;
+					invokevirtual 36;		// sendBytes(SS)V
+					return;
+		}
+
+		.method private nota(Ljavacard/framework/APDU;)V {
+			.stack 4;
+			.locals 5;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	getfield_a_this 10;		// reference com/oracle/jcclassic/samples/wallet/Wallet.pin
+					invokevirtual 33;		// isValidated()Z
+					ifne L2;
+				L1:	sspush 25345;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 20;		// getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_4;
+					baload;
+					sstore_3;
+				L4:	aload_1;
+					invokevirtual 30;		// setIncomingAndReceive()S
+					s2b;
+					sstore 4;
+				L5:	sload_3;
+					sconst_2;
+					if_scmpne L7;
+				L6:	sload 4;
+					sconst_2;
+					if_scmpeq L8;
+				L7:	sspush 26368;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L8:	sconst_2;
+					newarray 11;
+					astore 5;
+				L9:	aload 5;
+					sconst_0;
+					aload_2;
+					sconst_5;
+					baload;
+					bastore;
+					aload 5;
+					sconst_1;
+					aload_2;
+					bspush 6;
+					baload;
+					bastore;
+					aload 5;
+					sconst_0;
+					baload;
+					sconst_1;
+					if_scmpne L11;
+				L10:	aload_0;
+					aload 5;
+					sconst_1;
+					baload;
+					putfield_s 0;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D1
+					goto L20;
+				L11:	aload 5;
+					sconst_0;
+					baload;
+					sconst_2;
+					if_scmpne L13;
+				L12:	aload_0;
+					aload 5;
+					sconst_1;
+					baload;
+					putfield_s 1;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D2
+					goto L20;
+				L13:	aload 5;
+					sconst_0;
+					baload;
+					sconst_3;
+					if_scmpne L15;
+				L14:	aload_0;
+					aload 5;
+					sconst_1;
+					baload;
+					putfield_s 2;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D3
+					goto L20;
+				L15:	aload 5;
+					sconst_0;
+					baload;
+					sconst_4;
+					if_scmpne L17;
+				L16:	aload_0;
+					aload 5;
+					sconst_1;
+					baload;
+					putfield_s 3;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D4
+					goto L20;
+				L17:	aload 5;
+					sconst_0;
+					baload;
+					sconst_5;
+					if_scmpne L19;
+				L18:	aload_0;
+					aload 5;
+					sconst_1;
+					baload;
+					putfield_s 4;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D5
+					goto L20;
+				L19:	sspush 4040;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L20:	aload_1;
+					invokevirtual 34;		// setOutgoing()S
+					sstore 6;
+				L21:	sload 6;
+					sconst_2;
+					if_scmpge L23;
+				L22:	sspush 26368;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L23:	aload_1;
+					sconst_2;
+					invokevirtual 35;		// setOutgoingLength(S)V
+					aload_2;
+					sconst_0;
+					getfield_s_this 0;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D1
+					bspush 8;
+					sshr;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_1;
+					getfield_s_this 0;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D1
+					sspush 255;
+					sand;
+					s2b;
+					bastore;
+					aload_1;
+					sconst_0;
+					sconst_2;
+					invokevirtual 36;		// sendBytes(SS)V
+					return;
+		}
+
+		.method private getPunctaje(Ljavacard/framework/APDU;)V {
+			.stack 4;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	getfield_a_this 10;		// reference com/oracle/jcclassic/samples/wallet/Wallet.pin
+					invokevirtual 33;		// isValidated()Z
+					ifne L2;
+				L1:	sspush 25345;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 20;		// getBuffer()[B
+					astore_2;
+				L3:	aload_1;
+					invokevirtual 34;		// setOutgoing()S
+					sstore_3;
+				L4:	sload_3;
+					bspush 10;
+					if_scmpge L6;
+				L5:	sspush 26368;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	aload_1;
+					bspush 10;
+					invokevirtual 35;		// setOutgoingLength(S)V
+					aload_2;
+					sconst_0;
+					getfield_s_this 5;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C1
+					bspush 8;
+					sshr;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_1;
+					getfield_s_this 5;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C1
+					sspush 255;
+					sand;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_2;
+					getfield_s_this 6;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C2
+					bspush 8;
+					sshr;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_3;
+					getfield_s_this 6;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C2
+					sspush 255;
+					sand;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_4;
+					getfield_s_this 7;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C3
+					bspush 8;
+					sshr;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_5;
+					getfield_s_this 7;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C3
+					sspush 255;
+					sand;
+					s2b;
+					bastore;
+					aload_2;
+					bspush 6;
+					getfield_s_this 8;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C4
+					bspush 8;
+					sshr;
+					s2b;
+					bastore;
+					aload_2;
+					bspush 7;
+					getfield_s_this 8;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C4
+					sspush 255;
+					sand;
+					s2b;
+					bastore;
+					aload_2;
+					bspush 8;
+					getfield_s_this 9;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C5
+					bspush 8;
+					sshr;
+					s2b;
+					bastore;
+					aload_2;
+					bspush 9;
+					getfield_s_this 9;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C5
+					sspush 255;
+					sand;
+					s2b;
+					bastore;
+					aload_1;
+					sconst_0;
+					bspush 10;
+					invokevirtual 36;		// sendBytes(SS)V
+					return;
+		}
+
+		.method private getCardInfo(Ljavacard/framework/APDU;)V {
+			.stack 4;
+			.locals 5;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	getfield_a_this 10;		// reference com/oracle/jcclassic/samples/wallet/Wallet.pin
+					invokevirtual 33;		// isValidated()Z
+					ifne L2;
+				L1:	sspush 25345;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 20;		// getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_4;
+					baload;
+					sstore_3;
+				L4:	aload_1;
+					invokevirtual 30;		// setIncomingAndReceive()S
+					s2b;
+					sstore 4;
+				L5:	sload_3;
+					sconst_1;
+					if_scmpne L7;
+				L6:	sload 4;
+					sconst_1;
+					if_scmpeq L8;
+				L7:	sspush 26368;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L8:	aload_2;
+					sconst_5;
+					baload;
+					sstore 5;
+				L9:	aload_1;
+					invokevirtual 34;		// setOutgoing()S
+					sstore 6;
+				L10:	sload 6;
+					bspush 12;
+					if_scmpge L12;
+				L11:	sspush 26368;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L12:	aload_1;
+					bspush 12;
+					invokevirtual 35;		// setOutgoingLength(S)V
+					sload 5;
+					sconst_1;
+					if_scmpne L14;
+				L13:	aload_2;
+					sconst_0;
+					getfield_s_this 0;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D1
+					bspush 8;
+					sshr;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_1;
+					getfield_s_this 0;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D1
+					sspush 255;
+					sand;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_2;
+					getfield_s_this 5;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C1
+					bspush 8;
+					sshr;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_3;
+					getfield_s_this 5;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C1
+					sspush 255;
+					sand;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_4;
+					sconst_0;
+					bastore;
+					aload_2;
+					sconst_5;
+					sconst_1;
+					bastore;
+					aload_2;
+					bspush 6;
+					bspush 7;
+					bastore;
+					aload_2;
+					bspush 7;
+					bspush -27;
+					bastore;
+					aload_2;
+					bspush 8;
+					sconst_0;
+					bastore;
+					aload_2;
+					bspush 9;
+					sconst_5;
+					bastore;
+					aload_2;
+					bspush 10;
+					sconst_0;
+					bastore;
+					aload_2;
+					bspush 11;
+					sconst_5;
+					bastore;
+					goto_w L23;
+				L14:	sload 5;
+					sconst_2;
+					if_scmpne L16;
+				L15:	aload_2;
+					sconst_0;
+					getfield_s_this 1;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D2
+					bspush 8;
+					sshr;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_1;
+					getfield_s_this 1;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D2
+					sspush 255;
+					sand;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_2;
+					getfield_s_this 6;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C2
+					bspush 8;
+					sshr;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_3;
+					getfield_s_this 6;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C2
+					sspush 255;
+					sand;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_4;
+					sconst_0;
+					bastore;
+					aload_2;
+					sconst_5;
+					sconst_2;
+					bastore;
+					aload_2;
+					bspush 6;
+					bspush 7;
+					bastore;
+					aload_2;
+					bspush 7;
+					bspush -27;
+					bastore;
+					aload_2;
+					bspush 8;
+					sconst_0;
+					bastore;
+					aload_2;
+					bspush 9;
+					sconst_5;
+					bastore;
+					aload_2;
+					bspush 10;
+					sconst_0;
+					bastore;
+					aload_2;
+					bspush 11;
+					sconst_5;
+					bastore;
+					goto_w L23;
+				L16:	sload 5;
+					sconst_3;
+					if_scmpne L18;
+				L17:	aload_2;
+					sconst_0;
+					getfield_s_this 2;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D3
+					bspush 8;
+					sshr;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_1;
+					getfield_s_this 2;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D3
+					sspush 255;
+					sand;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_2;
+					getfield_s_this 7;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C3
+					bspush 8;
+					sshr;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_3;
+					getfield_s_this 7;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C3
+					sspush 255;
+					sand;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_4;
+					sconst_0;
+					bastore;
+					aload_2;
+					sconst_5;
+					sconst_3;
+					bastore;
+					aload_2;
+					bspush 6;
+					bspush 7;
+					bastore;
+					aload_2;
+					bspush 7;
+					bspush -27;
+					bastore;
+					aload_2;
+					bspush 8;
+					sconst_0;
+					bastore;
+					aload_2;
+					bspush 9;
+					sconst_5;
+					bastore;
+					aload_2;
+					bspush 10;
+					sconst_0;
+					bastore;
+					aload_2;
+					bspush 11;
+					sconst_5;
+					bastore;
+					goto_w L23;
+				L18:	sload 5;
+					sconst_4;
+					if_scmpne L20;
+				L19:	aload_2;
+					sconst_0;
+					getfield_s_this 3;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D4
+					bspush 8;
+					sshr;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_1;
+					getfield_s_this 3;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D4
+					sspush 255;
+					sand;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_2;
+					getfield_s_this 8;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C4
+					bspush 8;
+					sshr;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_3;
+					getfield_s_this 8;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C4
+					sspush 255;
+					sand;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_4;
+					sconst_0;
+					bastore;
+					aload_2;
+					sconst_5;
+					sconst_4;
+					bastore;
+					aload_2;
+					bspush 6;
+					bspush 7;
+					bastore;
+					aload_2;
+					bspush 7;
+					bspush -27;
+					bastore;
+					aload_2;
+					bspush 8;
+					sconst_0;
+					bastore;
+					aload_2;
+					bspush 9;
+					sconst_5;
+					bastore;
+					aload_2;
+					bspush 10;
+					sconst_0;
+					bastore;
+					aload_2;
+					bspush 11;
+					sconst_5;
+					bastore;
+					goto L23;
+				L20:	sload 5;
+					sconst_5;
+					if_scmpne L22;
+				L21:	aload_2;
+					sconst_0;
+					getfield_s_this 4;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D5
+					bspush 8;
+					sshr;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_1;
+					getfield_s_this 4;		// short com/oracle/jcclassic/samples/wallet/Wallet.NOTA_D5
+					sspush 255;
+					sand;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_2;
+					getfield_s_this 9;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C5
+					bspush 8;
+					sshr;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_3;
+					getfield_s_this 9;		// short com/oracle/jcclassic/samples/wallet/Wallet.PUNCT_C5
+					sspush 255;
+					sand;
+					s2b;
+					bastore;
+					aload_2;
+					sconst_4;
+					sconst_0;
+					bastore;
+					aload_2;
+					sconst_5;
+					sconst_5;
+					bastore;
+					aload_2;
+					bspush 6;
+					bspush 7;
+					bastore;
+					aload_2;
+					bspush 7;
+					bspush -27;
+					bastore;
+					aload_2;
+					bspush 8;
+					sconst_0;
+					bastore;
+					aload_2;
+					bspush 9;
+					sconst_5;
+					bastore;
+					aload_2;
+					bspush 10;
+					sconst_0;
+					bastore;
+					aload_2;
+					bspush 11;
+					sconst_5;
+					bastore;
+					goto L23;
+				L22:	sspush 4040;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L23:	aload_1;
+					sconst_0;
+					bspush 12;
+					invokevirtual 36;		// sendBytes(SS)V
+					return;
+		}
+
+		.method private verify(Ljavacard/framework/APDU;)V {
+			.stack 4;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	getfield_a_this 10;		// reference com/oracle/jcclassic/samples/wallet/Wallet.pin
+					invokevirtual 18;		// getTriesRemaining()B
+					ifne L2;
+				L1:	sspush 27010;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 20;		// getBuffer()[B
+					astore_2;
+				L3:	aload_1;
+					invokevirtual 30;		// setIncomingAndReceive()S
+					s2b;
+					sstore_3;
+				L4:	getfield_a_this 10;		// reference com/oracle/jcclassic/samples/wallet/Wallet.pin
+					aload_2;
+					sconst_5;
+					sload_3;
+					invokevirtual 37;		// check([BSB)Z
+					ifne L6;
+				L5:	sspush 25344;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	return;
+		}
+
+	}
+
+}

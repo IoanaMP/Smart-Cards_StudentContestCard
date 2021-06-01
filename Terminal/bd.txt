@@ -1,0 +1,7 @@
+ID_student, Prioritate, Cod_disciplina, Denumire_disciplina, Nota, Data_notare, 
+123, TRUE, 2, AI, 7, 13.02.2021, 
+123, TRUE, 1, Python, 10, 17.03.2021, 
+123, TRUE, 3, SI, 10, 13.02.2021, 
+123, TRUE, 4, RN, 9, 17.03.2021, 
+123, TRUE, 5, IP, 7, 13.02.2021, 
+
